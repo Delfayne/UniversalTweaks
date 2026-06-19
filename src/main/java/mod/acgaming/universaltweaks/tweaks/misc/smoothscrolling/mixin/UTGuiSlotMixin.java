@@ -113,7 +113,7 @@ public abstract class UTGuiSlotMixin
         this.target = target[0];
         if (lastContentHeight != getContentHeight())
         {
-            if (lastContentHeight != -1) amountScrolled = this.target = UTSmoothScrolling.clamp(this.target, getContentHeight(), 0);
+            if (lastContentHeight != -1) amountScrolled = this.target = UTSmoothScrolling.clamp(this.target, getMaxScroll(), 0);
             lastContentHeight = getContentHeight();
         }
     }

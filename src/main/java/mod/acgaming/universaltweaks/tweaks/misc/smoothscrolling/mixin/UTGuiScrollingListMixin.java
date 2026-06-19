@@ -162,8 +162,6 @@ public abstract class UTGuiScrollingListMixin
     @Unique
     private int getMaxScroll()
     {
-        int max = this.getContentHeight() - (this.bottom - this.top) + 4;
-        if (max < 0) max /= 2;
-        return max;
+        return Math.max(0, this.getContentHeight() - (this.bottom - this.top - 4));
     }
 }
