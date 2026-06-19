@@ -67,7 +67,7 @@ public abstract class UTGuiSlotMixin
     @Inject(method = "handleMouseInput", at = @At(value = "INVOKE", target = "Lorg/lwjgl/input/Mouse;getEventDWheel()I", remap = false), cancellable = true)
     public void utHandleMouseScroll(CallbackInfo callbackInfo)
     {
-        if (Mouse.isButtonDown(0) && this.getEnabled()) target = amountScrolled = UTSmoothScrolling.clamp(amountScrolled, getMaxScroll(), 0);
+        if (Mouse.isButtonDown(0) && this.getEnabled()) target = amountScrolled = UTSmoothScrolling.clamp(amountScrolled, getMaxScroll());
         else
         {
             int wheel = Mouse.getEventDWheel();
@@ -108,9 +108,12 @@ public abstract class UTGuiSlotMixin
     @Inject(method = "drawScreen", at = @At("HEAD"))
     public void utRender(int int_1, int int_2, float delta, CallbackInfo callbackInfo)
     {
-        float[] target = new float[] {this.target};
-        this.amountScrolled = UTSmoothScrolling.handleScrollingPosition(target, this.amountScrolled, this.getMaxScroll(), 20f / Minecraft.getDebugFPS(), (double) this.start, (double) this.duration);
-        this.target = target[0];
+        if (!Mouse.isButtonDown(0))
+        {
+            float[] target = new float[] {this.target};
+            this.amountScrolled = UTSmoothScrolling.handleScrollingPosition(target, this.amountScrolled, this.getMaxScroll(), 20f / Minecraft.getDebugFPS(), (double) this.start, (double) this.duration);
+            this.target = target[0];
+        }
         if (lastContentHeight != getContentHeight())
         {
             if (lastContentHeight != -1) amountScrolled = this.target = UTSmoothScrolling.clamp(this.target, getMaxScroll(), 0);
