@@ -394,6 +394,11 @@ public class UTConfigBugfixes
         public boolean utLocaleToggle = true;
 
         @Config.RequiresMcRestart
+        @Config.Name("Mouse Keybind Fix")
+        @Config.Comment("Fixes keybinds not triggering when bound to a mouse button")
+        public boolean utMouseKeybindFix = true;
+
+        @Config.RequiresMcRestart
         @Config.Name("Overlay Message Fade Out")
         @Config.Comment("Fixes Forge's overlay message (action bar) fade out regression")
         public boolean utOverlayMessageFadeOut = true;

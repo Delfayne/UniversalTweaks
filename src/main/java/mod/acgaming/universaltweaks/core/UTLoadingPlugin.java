@@ -229,6 +229,7 @@ public class UTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader
                 put("mixins/bugfixes/mixins.misc.camera.json", c -> UTConfigBugfixes.MISC.utCameraOrientation);
                 put("mixins/bugfixes/mixins.misc.depthmask.entity.json", c -> UTConfigBugfixes.MISC.utEntityDepthMaskToggle);
                 put("mixins/bugfixes/mixins.misc.depthmask.particle.json", c -> UTConfigBugfixes.MISC.utParticleDepthMaskToggle);
+                put("mixins/bugfixes/mixins.misc.mousekeybind.json", c -> UTConfigBugfixes.MISC.utMouseKeybindFix);
                 put("mixins/bugfixes/mixins.misc.potionamplifier.json", c -> UTConfigBugfixes.MISC.utPotionAmplifierVisibilityToggle);
                 put("mixins/bugfixes/mixins.misc.smoothlighting.json", c -> UTConfigBugfixes.MISC.utAccurateSmoothLighting);
                 put("mixins/bugfixes/mixins.misc.spectatormenu.json", c -> UTConfigBugfixes.MISC.utSpectatorMenuToggle);
