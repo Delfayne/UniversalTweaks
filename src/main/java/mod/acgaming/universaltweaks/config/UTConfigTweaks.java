@@ -5,6 +5,8 @@ import java.util.Map;
 
 import mod.acgaming.universaltweaks.tweaks.entities.villagerharvest.UTVillagerHarvestUtils;
 
+import mod.acgaming.universaltweaks.tweaks.items.usefulhoes.UTUsefulHoes;
+
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -1442,6 +1444,10 @@ public class UTConfigTweaks
         @Config.Name("Shield Parry")
         public final ParryCategory PARRY = new ParryCategory();
 
+        @Config.LangKey("cfg.universaltweaks.tweaks.items.usefulhoes")
+        @Config.Name("Useful Hoes")
+        public final UsefulHoesCategory USEFUL_HOES = new UsefulHoesCategory();
+
         @Config.Name("Always Eat")
         @Config.Comment("Allows the consumption of food at any time, regardless of the hunger bar")
         public boolean utAlwaysEatToggle = false;
@@ -1788,6 +1794,26 @@ public class UTConfigTweaks
             @Config.Name("[12] Require Rebound Enchantment")
             @Config.Comment("Requires the rebound enchantment for parrying")
             public boolean utParryReboundRequire = false;
+        }
+
+        public static class UsefulHoesCategory
+        {
+            @Config.RequiresMcRestart
+            @Config.Name("[1] Useful Hoes")
+            @Config.Comment("Enables the Useful Hoes feature, allowing hoes to harvest whitelisted blocks faster")
+            public boolean utUsefulHoesToggle = true;
+
+            @Config.Name("[2] Hoe Harvestable Blocks")
+            @Config.Comment
+                ({
+                    "Blocks that have faster break speed when harvested with a hoe",
+                    "Example -> minecraft:hay_bale"
+                })
+            public String[] utHoeHarvestableBlocks = new String[] {
+                "minecraft:nether_wart_block",
+                "minecraft:hay_block",
+                "minecraft:sponge"
+            };
         }
     }
 
@@ -3199,6 +3225,7 @@ public class UTConfigTweaks
                 if (ITEMS.utCustomRarities.length > 0) UTCustomRarity.initItemRarityMap();
                 if (ITEMS.utCustomUseDurations.length > 0) UTCustomUseDuration.initItemUseMaps();
                 if (ITEMS.PARRY.utParryToggle) UTParry.initProjectileList();
+                if (ITEMS.USEFUL_HOES.utUsefulHoesToggle) UTUsefulHoes.initLists();
                 if (WORLD.CHUNK_GEN_LIMIT.utChunkGenLimitToggle) UTChunkGenLimit.initDimensionList();
                 if (WORLD.FLAT_BEDROCK.utFlatBedrockToggle) UTFlatBedrockList.initHeightWhitelist();
                 if (WORLD.VOID_FOG.utVoidFogToggle) UTVoidFog.initDimensionList();

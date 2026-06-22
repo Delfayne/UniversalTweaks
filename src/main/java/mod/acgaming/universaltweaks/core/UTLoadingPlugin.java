@@ -164,6 +164,7 @@ public class UTLoadingPlugin implements IFMLLoadingPlugin, IEarlyMixinLoader
                 put("mixins/tweaks/mixins.items.infinitymending.json", c -> UTConfigTweaks.ITEMS.INFINITY.utInfinityEnchantmentConflicts);
                 put("mixins/tweaks/mixins.items.itementities.server.json", c -> UTConfigTweaks.ITEMS.ITEM_ENTITIES.utItemEntitiesToggle);
                 put("mixins/tweaks/mixins.items.mobegg.json", c -> UTConfigTweaks.ITEMS.utPreventMobEggsFromChangingSpawner);
+                put("mixins/tweaks/mixins.items.usefulhoes.json", c -> UTConfigTweaks.ITEMS.USEFUL_HOES.utUsefulHoesToggle);
                 put("mixins/tweaks/mixins.items.rarity.json", c -> UTConfigTweaks.ITEMS.utCustomRarities.length > 0);
                 put("mixins/tweaks/mixins.items.repairing.json", c -> UTConfigTweaks.ITEMS.utCraftingRepairToggle);
                 put("mixins/tweaks/mixins.items.xpbottle.json", c -> UTConfigTweaks.ITEMS.utXPBottleAmount != -1);

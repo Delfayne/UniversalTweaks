@@ -327,6 +327,7 @@ Available in flavors [**Cleanroom**](https://www.curseforge.com/minecraft/modpac
 * **Unlimited Sound Pitch Range:** Removes the hardcoded range for sound pitches (0.5-2.0)
 * **Use Separate Dismount Key:** Makes the dismount keybind separate from LSHIFT, allowing it to be rebound independently
 * **Use Separate Narrator Key:** Allows using a custom Narrator key, instead of being stuck with CTRL+B
+* **Useful Hoes:** Backports faster Hoe block harvesting for hay bales and sponges, includes configurable whitelist
 * **Village Distance:** Sets the village generation distance in chunks
 * **Villager Harvesting:** Fixes Villagers being unable to replant modded crops and allows villagers to breed using modded foods.
 * **Villager Profession Biome Restriction:** Controls villager professions in specified biomes
