@@ -639,6 +639,11 @@ public class UTConfigTweaks
         public boolean utBurningZombiesToggle = true;
 
         @Config.RequiresMcRestart
+        @Config.Name("Cape Angle Clamp")
+        @Config.Comment("Limits player cape rotation to modern behavior at high movement speeds")
+        public boolean utCapeAngleClamp = true;
+
+        @Config.RequiresMcRestart
         @Config.Name("Coyote Time Jumping")
         @Config.Comment("Lets the player jump a couple frames after stepping off a ledge, similar to jumping in many platformers")
         public boolean utCoyoteTimeJumpingToggle = false;
