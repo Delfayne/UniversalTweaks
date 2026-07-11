@@ -201,6 +201,7 @@ public class UTMixinLoader implements ILateMixinLoader
                 put("mixins/mods/mixins.testdummy.copyarmor.json", c -> c.isModPresent("testdummy") && UTConfigMods.TEST_DUMMY.utCopyArmor);
                 put("mixins/mods/mixins.thefarlanders.dupes.json", c -> c.isModPresent("farlanders") && UTConfigMods.THE_FARLANDERS.utDuplicationFixesToggle);
                 put("mixins/mods/mixins.thermalexpansion.dupes.json", c -> c.isModPresent("thermalexpansion") && UTConfigMods.THERMAL_EXPANSION.utDuplicationFixesToggle);
+                put("mixins/mods/mixins.thermalexpansion.transposer.json", c -> c.isModPresent("thermalexpansion") && UTConfigMods.THERMAL_EXPANSION.utTransposerStuckFixToggle);
                 put("mixins/mods/mixins.thermalexpansion.json", c -> c.isModPresent("thermalexpansion"));
                 put("mixins/mods/mixins.tinyprogressions.dupes.json", c -> c.isModPresent("tp") && UTConfigMods.TINY_PROGRESSIONS.utDuplicationFixesToggle);
                 put("mixins/mods/mixins.tombmanygraves.timestamp.json", c -> c.isModPresent("tombmanygraves") && UTConfigMods.TOMBMANYGRAVES.utISOTimestamp);

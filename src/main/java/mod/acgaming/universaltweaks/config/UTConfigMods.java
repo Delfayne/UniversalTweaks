@@ -1550,6 +1550,11 @@ public class UTConfigMods
         @Config.Name("Duplication Fixes")
         @Config.Comment("Fixes various duplication exploits")
         public boolean utDuplicationFixesToggle = true;
+
+        @Config.RequiresMcRestart
+        @Config.Name("Fluid Transposer Stuck Fix")
+        @Config.Comment("Fixes the Fluid Transposer rarely getting stuck while auto-processing fluid containers by ejecting spent/unusable containers from the center slot so crafting can resume")
+        public boolean utTransposerStuckFixToggle = true;
     }
 
     public static class TinkersConstructCategory
