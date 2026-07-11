@@ -3,6 +3,8 @@ package mod.acgaming.universaltweaks.mods.thermalexpansion.mixin;
 import cofh.core.fluid.FluidTankCore;
 import cofh.thermalexpansion.block.machine.TileMachineBase;
 import cofh.thermalexpansion.block.machine.TileTransposer;
+import cofh.thermalexpansion.util.managers.machine.TransposerManager;
+import cofh.thermalexpansion.util.managers.machine.TransposerManager.ContainerOverride;
 import mod.acgaming.universaltweaks.config.UTConfigMods;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
@@ -15,6 +17,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = TileTransposer.class, remap = false)
 public abstract class UTTransposerStuckMixin extends TileMachineBase {
@@ -57,6 +60,30 @@ public abstract class UTTransposerStuckMixin extends TileMachineBase {
             if (inventory[1] != processStack) {
                 markChunkDirty();
             }
+        }
+    }
+
+    /**
+     * The core problem is that the canStartHandler() checks only that the output slot holds the
+     * right item type, not that it has room. Starting a process whose converted container can no
+     * longer stack (output slot full) is what strands the spent container in the process slot. This
+     * now refuses to start until the output slot has headroom.
+     */
+    @Inject(method = "canStartHandler", at = @At("HEAD"), cancellable = true)
+    private void utTransposerOutputFullGuard(CallbackInfoReturnable<Boolean> cir) {
+        if (!UTConfigMods.THERMAL_EXPANSION.utTransposerStuckFixToggle) {
+            return;
+        }
+        if (inventory[1].isEmpty() || inventory[2].isEmpty()) {
+            return;
+        }
+        ContainerOverride override = TransposerManager.getContainerOverride(inventory[1]);
+        if (override == null) {
+            return;
+        }
+        if (inventory[2].isItemEqual(override.getOutput())
+            && inventory[2].getCount() + 1 > inventory[2].getMaxStackSize()) {
+            cir.setReturnValue(false);
         }
     }
 
