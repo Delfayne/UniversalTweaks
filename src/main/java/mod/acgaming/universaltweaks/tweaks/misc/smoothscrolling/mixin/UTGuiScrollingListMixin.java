@@ -94,15 +94,17 @@ public abstract class UTGuiScrollingListMixin
     @Redirect(method = "drawScreen(IIF)V", at = @At(value = "INVOKE", target = "Lnet/minecraftforge/fml/client/GuiScrollingList;applyScrollLimits()V"))
     public void utBindScrollDistance(GuiScrollingList guiSlot)
     {
-        if (Mouse.isButtonDown(0)) target = scrollDistance = UTSmoothScrolling.clamp(scrollDistance, getMaxScroll(), 0);
+        if (Mouse.isButtonDown(0)) target = scrollDistance = UTSmoothScrolling.clamp(scrollDistance, getMaxScroll());
     }
 
     @Inject(method = "drawScreen(IIF)V", at = @At("HEAD"))
     public void utRender(int int_1, int int_2, float delta, CallbackInfo callbackInfo)
     {
-        float[] target = new float[] {this.target};
-        this.scrollDistance = UTSmoothScrolling.handleScrollingPosition(target, this.scrollDistance, this.getMaxScroll(), 20f / Minecraft.getDebugFPS(), (double) this.start, (double) this.duration);
-        this.target = target[0];
+        if (!Mouse.isButtonDown(0)) {
+            float[] target = new float[] {this.target};
+            this.scrollDistance = UTSmoothScrolling.handleScrollingPosition(target, this.scrollDistance, this.getMaxScroll(), 20f / Minecraft.getDebugFPS(), (double) this.start, (double) this.duration);
+            this.target = target[0];
+        }
         if (lastContentHeight != getContentHeight())
         {
             if (lastContentHeight != -1) scrollDistance = this.target = UTSmoothScrolling.clamp(this.target, getMaxScroll(), 0);
@@ -162,8 +164,6 @@ public abstract class UTGuiScrollingListMixin
     @Unique
     private int getMaxScroll()
     {
-        int max = this.getContentHeight() - (this.bottom - this.top) + 4;
-        if (max < 0) max /= 2;
-        return max;
+        return Math.max(0, this.getContentHeight() - (this.bottom - this.top - 4));
     }
 }
