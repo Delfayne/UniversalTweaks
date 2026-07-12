@@ -151,6 +151,7 @@ Available in flavors [**Cleanroom**](https://www.curseforge.com/minecraft/modpac
 * **Burning Baby Zombies:** Lets baby zombies burn in daylight as in Minecraft 1.13+
 * **Burning Skeletons:** Prevents skeletons burning in daylight
 * **Burning Zombies:** Prevents zombies burning in daylight
+* **Cape Angle Clamp:** Limits player cape rotation to modern behavior at high movement speeds
 * **Cave Generation:** Sets custom values for the vanilla cave generation
 * **Charged Creeper Spawning:** Sets the chance for creepers to spawn charged
 * **Chat:**
